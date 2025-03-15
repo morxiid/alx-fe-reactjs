@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import RecipeDetails from './components/recipeDetails';
 import EditRecipeForm from './components/EditRecipeForm';
 

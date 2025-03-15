@@ -1,5 +1,5 @@
 import React from 'react';
-import { useParams } from 'react-dom'
+import { useParams } from 'react-router-dom'
 import useRecipeStore from './recipeStore';
 import DeleteRecipeButton from './DeleteRecipeButton';
 

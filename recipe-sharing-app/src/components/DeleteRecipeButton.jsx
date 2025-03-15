@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate } from 'react-dom'
+import { useNavigate } from 'react-router-dom'
 import useRecipeStore from './recipeStore';
 
 function DeleteRecipeButton({ id }) {
