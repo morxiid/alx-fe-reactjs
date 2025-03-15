@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-dom'
+import { useParams, useNavigate } from 'react-router-dom';
 import useRecipeStore from './recipeStore';
 
 function EditRecipeForm() {
@@ -16,6 +16,7 @@ function EditRecipeForm() {
     const [ingredients, setIngredients] = useState(recipe?.ingredients || '');
     const [instructions, setInstructions] = useState(recipe?.instructions || '');
 
+    // Populate the form fields when the recipe is found
     useEffect(() => {
         if (recipe) {
             setName(recipe.name);
@@ -25,8 +26,9 @@ function EditRecipeForm() {
         }
     }, [recipe]);
 
+    // Handle form submission
     const handleSubmit = (e) => {
-        e.preventDefault();
+        e.preventDefault(); // Prevent the default form submission behavior
         const updatedRecipe = {
             id: parseInt(id),
             name,
@@ -34,10 +36,11 @@ function EditRecipeForm() {
             ingredients,
             instructions,
         };
-        updateRecipe(parseInt(id), updatedRecipe);
+        updateRecipe(parseInt(id), updatedRecipe); // Update the recipe in the store
         navigate(`/recipes/${id}`); // Redirect to the recipe details page
     };
 
+    // If the recipe is not found, display a message
     if (!recipe) {
         return <div>Recipe not found!</div>;
     }
