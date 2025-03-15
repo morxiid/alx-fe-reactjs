@@ -1,49 +1,28 @@
-import {create} from 'zustand'
+import { create } from 'zustand';
 
 const useRecipeStore = create((set, get) => ({
-    recipes: [],
-    addRecipe: (newRecipe) => set(state => ({recipes: [...state.recipes,newRecipe]})),
-    setRecipes: (recipes) => set({recipes}),
-    updateRecipe: (id, updatedRecipe) => set(state => ({
-        recipes: state.recipes.map((recipe) =>
-        recipe.id === id ? {...recipe, ...updatedRecipe} : recipe)
+  recipes: [], // List of all recipes
+  favorites: [], // List of favorite recipe IDs
+  recommendations: [], // List of recommended recipes
+
+  // Add a recipe to favorites
+  addFavorite: (recipeId) =>
+    set((state) => ({ favorites: [...state.favorites, recipeId] })),
+
+  // Remove a recipe from favorites
+  removeFavorite: (recipeId) =>
+    set((state) => ({
+      favorites: state.favorites.filter((id) => id !== recipeId),
     })),
-    deleteRecipe: (id) => set(state => ({
-        recipes: state.recipes.filter((recipe) => recipe.id !== id),
-    })),
-    searchTerm: '', // Search term for filtering
-  filteredRecipes: [], // Filtered list of recipes
 
-  // Set the search term
-  setSearchTerm: (term) => set({ searchTerm: term }),
-
-  // Filter recipes based on the search term
-  filterRecipes: () => {
-    const { recipes, searchTerm } = get();
-    set({
-      filteredRecipes: recipes.filter((recipe) =>
-        recipe.name.toLowerCase().includes(searchTerm.toLowerCase())
-      ),
-    });
+  // Generate recommendations based on favorites
+  generateRecommendations: () => {
+    const { recipes, favorites } = get();
+    const recommended = recipes.filter(
+      (recipe) => favorites.includes(recipe.id) && Math.random() > 0.5
+    );
+    set({ recommendations: recommended });
   },
-  // Add more filters if needed (e.g., by ingredients or preparation time)
-  filterByIngredients: (ingredient) => {
-    const { recipes } = get();
-    set({
-      filteredRecipes: recipes.filter((recipe) =>
-        recipe.ingredients.toLowerCase().includes(ingredient.toLowerCase())
-      ),
-    });
-  },
-  filterByPreparationTime: (maxTime) => {
-    const { recipes } = get();
-    set({
-      filteredRecipes: recipes.filter((recipe) =>
-        recipe.preparationTime <= maxTime
-      ),
-    });
-  },
-
 }));
 
-export default useRecipeStore
+export default useRecipeStore;

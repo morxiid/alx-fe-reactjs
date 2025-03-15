@@ -1,29 +1,24 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'; // Import routing components
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import RecipeList from './components/RecipeList';
-import RecipeDetail from './components/RecipeDetail'; // Import RecipeDetail component
-import AddRecipeForm from './components/AddRecipeForm'; // Import AddRecipeForm component
-import EditRecipeForm from './components/EditRecipeForm'; // Import EditRecipeForm component
-import Home from './components/Home'; // Import Home component (if you have one)
+import RecipeDetail from './components/RecipeDetail';
+import AddRecipeForm from './components/AddRecipeForm';
+import EditRecipeForm from './components/EditRecipeForm';
+import FavoritesList from './components/FavoritesList';
+import RecommendationsList from './components/RecommendationsList';
+import Home from './components/Home';
 
 function App() {
   return (
     <Router>
       <Routes>
-        {/* Home Route */}
         <Route path="/" element={<Home />} />
-
-        {/* Recipe List Route */}
         <Route path="/recipes" element={<RecipeList />} />
-
-        {/* Add Recipe Route */}
         <Route path="/recipes/add" element={<AddRecipeForm />} />
-
-        {/* Recipe Detail Route */}
         <Route path="/recipes/:id" element={<RecipeDetail />} />
-
-        {/* Edit Recipe Route */}
-        <Route path="/recipes/:id/edit" element={<EditRecipeForm />} />
+        <Route path="/recipes/:id/edit" element={<RecipeForm />} />
+        <Route path="/favorites" element={<FavoritesList />} />
+        <Route path="/recommendations" element={<RecommendationsList />} />
       </Routes>
     </Router>
   );
