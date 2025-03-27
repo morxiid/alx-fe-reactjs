@@ -11,14 +11,14 @@ const FormikForm = () => {
 
     //Validation schema using yup
     const validationSchema = Yup.object().shape({
-        username: Yup.string()
+        username: Yup.string().required
             .min(3, 'Username must be at 3 characters')
             .max(20, 'Username must be 20 character or less')
             .required('Email is required'),
-        email: Yup.string()
+        email: Yup.string().required
             .email('Invalid email address')
             .required('Email is required'),
-        password: Yup.string()
+        password: Yup.string().required
             .min(8, 'Password must be at least 8 characters')
             .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]/,
                 'Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character')
