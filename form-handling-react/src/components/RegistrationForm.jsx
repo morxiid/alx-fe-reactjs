@@ -1,11 +1,7 @@
 import { useState } from "react";
 
 function RegistrationFform(){
-    // const[formData, setFormData] = useState({
-    //     username: "",
-    //     email: "",
-    //     password: "",
-    // });
+
     const[username, setUsername] = useState("");
     const[email, setEmail] = useState("");
     const[password, setPassword] = useState("");
@@ -13,10 +9,16 @@ function RegistrationFform(){
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        if(!username || !email || !password){
-            alert("Please fill in all fileds")
-        }
-    }
+        if(!username){
+            alert("Please fill the username filed")
+        };
+        if(!email){
+            alert("Please fill the email filed")
+        };
+        if(!password){
+            alert("Please fill the password filed")
+        };
+    };
 
     return(
         <form onSubmit={handleSubmit}>
