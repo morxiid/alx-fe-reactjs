@@ -1,17 +1,18 @@
 import { useState } from "react";
 
 function RegistrationFform(){
-    const[formData, setFormData] = useState({
-        username: "",
-        email: "",
-        password: "",
-    });
+    // const[formData, setFormData] = useState({
+    //     username: "",
+    //     email: "",
+    //     password: "",
+    // });
+    const[username, setUsername] = useState("");
+    const[email, setEmail] = useState("");
+    const[password, setPassword] = useState("");
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        const{ username, email, password } = formData;
-        
         if(!username || !email || !password){
             alert("Please fill in all fileds")
         }
@@ -20,11 +21,11 @@ function RegistrationFform(){
     return(
         <form onSubmit={handleSubmit}>
             <label htmlFor="username">username:</label>
-            <input type="text" placeholder="username" onChange={(e) => setFormData({...formData, username: e.target.value })}/><br />
+            <input type="text" value={username} placeholder="username" onChange={(e) => setUsername(e.target.value)}/><br />
             <label htmlFor="email">Email:</label>
-            <input type="email" placeholder="name@example.com" onChange={(e) => setFormData({...formData, email: e.target.value})}/><br />
+            <input type="email" value={email} placeholder="name@example.com" onChange={(e) => setEmail(e.target.value)}/><br />
             <label htmlFor="password">Password:</label>
-            <input type="password" placeholder="password" onChange={(e) => setFormData({...formData, password: e.target.value})}/>
+            <input type="password"  value={password} placeholder="password" onChange={(e) => setPassword(e.target.value)}/>
             <button>Submit</button>
         </form>
     )
