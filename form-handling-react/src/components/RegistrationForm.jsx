@@ -5,19 +5,42 @@ function RegistrationFform(){
     const[username, setUsername] = useState("");
     const[email, setEmail] = useState("");
     const[password, setPassword] = useState("");
+    const [errors, setErrors] = useState({
+        username: "",
+        email: "",
+        password: ""
+    });
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
+        let hasErrors = false;
+        const newErrors = {
+            username: "",
+            email: "",
+            password: ""
+        };
+
         if(!username){
-            alert("Please fill the username filed")
+            newErrors.username = "Please fill the username field";
+            hasErrors = true;
         };
         if(!email){
-            alert("Please fill the email filed")
+            newErrors.email = "Please fill the email field";
+            hasErrors = true;
         };
         if(!password){
-            alert("Please fill the password filed")
+            newErrors.password = "Please fill the password field";
+            hasErrors = true;
         };
+
+        setErrors(newErrors);
+
+        if(!hasErrors){
+            console.log("Form submitted:", { username, email, password });
+            // Submit your form here
+            alert("Registration successful!");
+        }
     };
 
     return(
