@@ -1,13 +1,12 @@
-import { QueryClient, QueryClientProvider } from 'react-query';
-
-const queryClient = new QueryClient();
+import PostsComponent from './PostsComponent'
+import './App.css'
 
 function App() {
   return (
-    <QueryClientProvider client={queryClient}>
+    <div className="app">
       <PostsComponent />
-    </QueryClientProvider>
-  );
+    </div>
+  )
 }
 
 export default App
