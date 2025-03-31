@@ -4,6 +4,9 @@ const useRecipeStore = create((set, get) => ({
   recipes: [], // List of all recipes
   favorites: [], // List of favorite recipe IDs
   recommendations: [], // List of recommended recipes
+  addRecipe: [],
+  updateRecipe: [],
+  deleteRecipe: [],
 
   // Add a recipe to favorites
   addFavorite: (recipeId) =>
